@@ -9,7 +9,7 @@ const InitialState = {
     linkingFail: undefined,
     linkAccountPage: false,
     telcoDashboard: undefined,
-    productName: undefined
+    productName: "Link Accounts"
 }
 
 export default function storedState(state = InitialState, action) {
@@ -48,7 +48,7 @@ export default function storedState(state = InitialState, action) {
                 accountsFetch: [],
                 linkAccountPage: false,
                 telcoDashboard: undefined,
-                productName: undefined
+                productName: "Link Accounts"
             }
         case "LINK_ACCOUNT":
             console.log(action.payload.value);
@@ -72,10 +72,24 @@ export default function storedState(state = InitialState, action) {
 
             }
         case "CHANGE_LINK_ACCOUNT":
+
             return {
                 ...state,
                 linkAccountPage: action.payload
             }
+            
+        case "ACTIVE_LINK_ACCOUNT":
+        return {
+            ...state,
+            linkAccountPage: action.payload,
+            productName: "Link Accounts"
+        }
+        case "ACTIVE_LINK_ACCOUNT_DASHBOARD":
+        return {
+            ...state,
+            linkAccountPage: false,
+            productName: action.payload
+        }
         case "ADD_TELCO_DASHBOARD":
             return {
                 ...state,

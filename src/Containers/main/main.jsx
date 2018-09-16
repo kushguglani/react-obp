@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import LinkAccount from './linkAccount';
 import TelcoDashboard from './telcoDashboard';
 import DefaultMain from './defaultMain';
-import { changeLinkAccount,getTelcoDashboardData } from '../../action/'
+import { changeLinkAccount,getTelcoDashboardData,changeLinkAccountDashboard } from '../../action/'
 
 class main extends Component {
 
@@ -18,7 +18,7 @@ class main extends Component {
     console.log(this.props.account);  
     let productId = this.props.account[0].productId;
     if (this.props.linkAccountPage) {
-      return <LinkAccount showDefault={this.props.changeLinkAccount} />
+      return <LinkAccount showDashboard={this.props.changeLinkAccountDashboard} />
     }
     else if (this.props.accountsFetch[0]) {
       return <TelcoDashboard showDefault={this.props.changeLinkAccount} />
@@ -41,7 +41,8 @@ function initMapSateToProps(state) {
 function initMapDispatchToProps(dispatch) {
   return bindActionCreators({
     changeLinkAccount,
-    getTelcoDashboardData
+    getTelcoDashboardData,
+    changeLinkAccountDashboard
   }, dispatch)
 }
 

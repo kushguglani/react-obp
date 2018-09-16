@@ -135,7 +135,13 @@ export function getTelcoDashboardData(cid, pid,pName) {
 
 export function changeLinkAccount(value){
     return{
-        type:"CHANGE_LINK_ACCOUNT",
+        type:"ACTIVE_LINK_ACCOUNT",
+        payload:value
+    }
+}
+export function changeLinkAccountDashboard(value){
+    return{
+        type:"ACTIVE_LINK_ACCOUNT_DASHBOARD",
         payload:value
     }
 }

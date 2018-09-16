@@ -17,27 +17,26 @@ class LeftMenuBar extends Component {
         if (cid === "Link1") {
             this.props.changeLinkAccount(true);
         }
+        else if(cid === "Manage1"){
+            console.log("Viw Account page");
+        }
         else {
             this.props.getTelcoDashboardData(cid, pid, productName)
         }
     }
     render() {
+        // let activeClassName = classNames({
+        //     "active_product": true, // call the function directly instead of saving in state
+        // });
+        // let u
         let accounts;
         if (this.props.fetchAccounts ) {
-            accounts = this.props.fetchAccounts.map(curr => <p key={curr.productId} onClick={() => this.leftBarClick(curr.customerID, curr.productId, curr.productName)}>{curr.productName}
+            accounts = this.props.fetchAccounts.map(curr => <p className={curr.productName ===this.props.productName ? "active_product":""} key={curr.productId} onClick={() => this.leftBarClick(curr.customerID, curr.productId, curr.productName)}>{curr.productName}
             </p>
             )
         }
-        // else if (this.props.fetchAccounts) {
-        //     console.log("work here");
-        //     console.log(this.props.fetchAccounts[0])
-        //     console.log(this.props.fetchAccounts[0].customerID)
-        //     this.props.getTelcoDashboardData(this.props.fetchAccounts[0].customerID, this.props.fetchAccounts[0].productId, this.props.fetchAccounts[0].productName)
-        //     accounts = this.props.fetchAccounts[0].map(curr => <p key={curr.productId} onClick={() => this.leftBarClick(curr.customerID, curr.productId, curr.productName)}>{curr.productName}
-        //     </p>)
-        // }
         else {
-            accounts = <Accounts data={this.props.accounts} leftBarClick={this.leftBarClick} />
+            accounts = <Accounts activeProduct={this.props.productName} data={this.props.accounts} leftBarClick={this.leftBarClick} />
         }
         console.log(accounts);
         return (
@@ -47,7 +46,7 @@ class LeftMenuBar extends Component {
                     {accounts}
                 </div>
                 <label> <img alt="Manage Account Icon" src={manageAccountImg} />MANAGE ACCOUNTS</label>
-                <Accounts data={this.props.manageAccounts} leftBarClick={this.leftBarClick} />
+                <Accounts activeProduct={this.props.productName} data={this.props.manageAccounts} leftBarClick={this.leftBarClick} />
                 <Routing />
             </div>
         );

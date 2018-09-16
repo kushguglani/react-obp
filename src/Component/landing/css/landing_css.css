@@ -195,6 +195,9 @@
 .active {
   border-bottom:3px solid #007cd9;
 }
+.active_product{
+  font-weight: 800 !important;
+}
 
 .userDetail{
   float: right;

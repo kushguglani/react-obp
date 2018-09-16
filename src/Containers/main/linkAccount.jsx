@@ -82,7 +82,7 @@ class linkAccount extends Component {
                             <label className={errorClassName}>{this.state.linkError}</label>
                             <button className="btn-full btn-green" onClick={this.addTelcoLinkAccount}> Submit </button>
                             &nbsp;&nbsp;&nbsp;
-                                <button className="btn-full btn-blue" onClick={()=>this.props.showDefault(false)}>
+                                <button className="btn-full btn-blue" onClick={()=>this.props.showDashboard(this.props.fetchAccounts[0].productName)}>
                                     Cancel
                             </button>
                                 <div className={spinnerLoader}></div>

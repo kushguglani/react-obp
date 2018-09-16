@@ -14,7 +14,7 @@ class account extends Component {
     return (
       <React.Fragment>
         {this.props.data.map(curr => {
-          return <p key={curr.productId} onClick={()=>this.props.leftBarClick(curr.productId)}>{curr.productName
+          return <p className={curr.productName ===this.props.activeProduct ? "active_product":""} key={curr.productId} onClick={()=>this.props.leftBarClick(curr.productId)}>{curr.productName
           }</p>
         })}
       </React.Fragment>
