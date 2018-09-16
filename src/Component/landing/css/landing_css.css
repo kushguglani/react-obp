@@ -1,0 +1,406 @@
+.section_signing{
+    width:330px;    
+    margin: 15px auto 25px;
+    background-color: #ffffff;
+    box-shadow: 0px 1px 1px #ddd;
+    padding-bottom: 20px;
+  }
+  .section_footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: #f4f4f4;
+    border-top:1px solid #ddd;
+    color:#262626;
+    font-size: 40%;
+    padding: 7px;
+    margin: 0;
+    text-align: center;
+  }
+  .logo{
+    padding: 0;
+    margin: 0;
+  }
+  .logoLanding {
+    width: 150px;
+  }
+  .inputFields{
+    text-align: left;
+    padding: 15px 30px 0px 30px;
+  }
+  .inputFields input{
+    width: 270px;
+    border: 1px solid #606060;
+    padding: 7px ;
+    border-radius: 2px;
+    font-size: 50%;
+    margin-bottom: 22px;
+    box-sizing: border-box;
+    outline: none;
+  }
+  .inputFields input:hover,
+  .inputFields input:active{
+    outline: none;
+    border: 1px solid #606060;
+  }
+  .inputFields label{
+    font-size: 50%;
+    color:#606060;
+    display: block;
+    line-height: 6px;
+    line-height: 1px;
+  }
+  header{
+    padding-top: 76px;
+    margin-bottom: 30px;
+  }
+  .landingHeading{
+    margin:0;
+    padding-top: 36px;
+    padding-bottom:20px;
+    font-family: 'Roboto Condensed';
+    opacity: 0.6;
+  }
+  .btn-full{
+    border-radius: 2px;
+    display: inline-block;
+    width: 100px;
+    padding:9px 10px;
+    cursor: pointer;
+    color: #fff;
+    margin-bottom: 15px;
+    font-size: 45%;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    box-sizing: initial;
+  }
+  .btn-green{
+    background-color: #7fb13c;
+
+  }
+  .btn-blue{
+    background-color: #007cd9;
+
+  }
+  .btn-ghost{
+    text-decoration: none;
+    color:blue;
+    font-size:50%;
+    margin-bottom: 22px;
+    display: inline-block;
+  }
+  .landing-para{
+    font-size: 60%;
+    display: inline-block;
+    padding-right: 22px;
+    color:#606060;
+  }
+  form {
+    font-size: 0;
+}
+.input_error{
+  border: 1px solid red !important;
+}
+/* add icons to input field */
+.userNameField{
+  background-image: url(../../../images/icons/person.png);
+  background-repeat: no-repeat;
+  background-position:6px 4px;
+  background-size: contain;
+  padding-left: 37px !important;  
+  opacity: 0.4;
+  background-size: 22px 22px;
+}
+.passwordField{
+  background-image: url(../../../images/icons/password.png);
+  background-repeat: no-repeat;
+  /* background-position: left; */
+  background-size: contain;
+  padding-left: 37px !important;  
+  background-size: 22px 22px;
+  opacity: 0.4;
+  background-position:6px 4px;
+}
+.disable{
+  cursor:not-allowed;
+}
+.showErrorMessage{
+  color:red !important;
+  margin-bottom: 15px;
+  font-size: 50%;
+}
+.noMessage{
+  display: none  !important;
+}
+
+
+
+/* dashboard */
+.dashboardLogo{
+  width: 150px;
+  margin: 15px; 
+}
+.container{
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  height: 102px;
+  top:0;
+  left:0;
+  z-index: 100;
+  background-color:#eee
+}
+.leftdiv{
+ 
+  float: left;
+  width: 18%;
+  /* margin-left: 20px; */
+  text-align: left;
+
+
+}
+.navbarContainer{
+  margin:50px auto 0 auto;
+  display: inline-block;
+}
+.navLinks{
+  list-style-type: none;
+  margin:0;
+  overflow: hidden;
+  background-color: #eee;
+  /* text-align: center; */
+  color:#e040fb
+}
+
+.navLinks li{
+  float: left;
+}
+.navLinks li a {
+  display: block;
+  color:#007cd9;
+  text-align: center;
+  margin: 10px 40px;
+  padding-bottom: 4px;
+  text-decoration: none;
+  font-size: 60%;
+  font-weight: 700;
+}
+
+.navLinks li a:hover:not(.active) {
+  border-bottom:3px solid #007cd9;
+}
+
+.active {
+  border-bottom:3px solid #007cd9;
+}
+
+.userDetail{
+  float: right;
+  font-size: 50%;
+  margin:15px 55px 15px 0px;
+  width: 10%;
+  text-align: right;
+}
+.userDetail p{
+  margin-bottom: 2px;
+}
+.anchorErrorLogout{
+  text-decoration: none;
+  cursor: pointer;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 80%;
+  font-weight: 700;
+}
+.clearfix{
+  zoom:1
+}
+.clearfix:after{
+  display: table;
+  content: "";
+  clear: both;
+}
+
+.lineHr{
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ddd;
+  margin: 0;
+  padding: 0; 
+  position: fixed;
+  width: 100%;
+  
+}
+
+
+.sidenav {
+  font-size: 40%;
+  margin-top: 102px;
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  border-right: 1px solid #ddd;
+  overflow: hidden;
+}
+
+.sidenav  p,
+.sidenav  a
+{
+  font-size: 95%;
+  font-weight: 600;
+  color:#262626;
+  padding: 18px 12px 2px 40px;
+  text-decoration: none;
+  /* font-size: 25px; */
+  display: block;
+  margin: 0;
+  cursor: pointer;
+}
+
+.sidenav a:hover {
+  /* color: #f1f1f1; */
+}
+.LeftManuBarData{
+  margin-bottom: 15px;
+}
+.main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+  padding-left: 15px;
+  margin-top:104px;
+}
+.paragraphDash{
+  font-size: 60%;
+  display: inline-block;
+  opacity: 0.8;
+  padding: 5px;
+  color: #262626;
+}
+.box{
+  border:1px solid #ccc;
+  width: 99%;
+  height: calc(100vh - 222px);
+  text-align: center;
+}
+.box p{
+  font-size: 50%;
+  opacity: 0.8;
+  margin-bottom: 2px;
+  padding-top: 18%;
+
+}
+.box .inputFields{
+  text-align: center;
+  padding-top: 14%;
+}
+.btn-full a{
+  text-decoration: none;
+  color: white;
+}
+.sidenav label{
+  display: flex;
+  align-items: center;
+  padding: 10px 10px 10px 22px;
+  background-color: #007cd9;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #fff;
+
+}
+
+.sidenav label img{
+  padding-right: 10px;
+  width: 25px;
+}
+.textTransform{
+  text-transform: capitalize;
+}
+
+/* css for spinner  */
+.loader {
+  background-size: 50px 50px;
+  position: relative;
+  display: block;
+  height:80px;
+  /* background-image: rgba(0,0,0,0.5), url(../../../images/icons/spinner.gif) ; */
+	background-image: url(../../../images/icons/spinner.gif);
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 10000;
+}
+
+.telcoBox{
+  border: 1px solid #ddd;
+  padding: 10px 0 0px 10px;
+  margin-right: 15px;
+  width: 97.6%;
+  margin:2% 2% 2% 0;
+  box-sizing: border-box;
+  /* text-al  ign: center; */
+}
+.ammount_content{
+  display: inline;
+  padding-left: 5%;
+  font-size: 80%;
+}
+.dueOn{
+  display: inline;
+  padding: 0 2% 0 3%;
+  font-size: 60%;
+  color:#606060;
+}
+.telcoBox button{
+  margin-left:20px;
+  display: inline;
+}
+.verLine{
+  border-left:3px solid #007cd9;
+  margin:0px 5%;
+  height: 28px;
+  display: initial;
+}
+.best_plan{
+  display: inline;
+  font-size: 60%;
+  color: #007cd9;
+}
+.halfGrpah{
+  width: 47.6%;
+  float: left;
+  margin:2% 2% 2% 0;
+  padding-bottom: 15px;
+  border:1px solid #ddd;
+}
+.halfGrpah p{
+  font-size: 60%;
+  color:#606060;
+  padding-left: 15px;
+  display: inline-block
+}
+.fullGrpah{
+  width: 97.6%;
+  float: left;
+  margin:2% 2% 2% 0;
+  padding-bottom: 15px;
+  border:1px solid #ddd;
+}
+
+@media only screen and (min-width: 1360px) {
+  .leftdiv {
+    float: left;
+    width: 20%;
+  }
+  .userDetail {
+    float: right;
+    font-size: 50%;
+    margin: 15px 55px;
+    width: 12%;
+  }
+}
