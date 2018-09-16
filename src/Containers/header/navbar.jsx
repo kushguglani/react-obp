@@ -12,10 +12,10 @@ class Navbar extends Component {
                         <Link to="/">BANKING</Link>
                     </li>
                     <li>
-                        <Link to="/about">ENERGY</Link>
+                        <Link to="/">ENERGY</Link>
                     </li>
                     <li>
-                        <Link className="active" to="/topics">TELCO</Link>
+                        <Link className="active" to="/dashboard">TELCO</Link>
                     </li>
                 </ul>
                 </div>
