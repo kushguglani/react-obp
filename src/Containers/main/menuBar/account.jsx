@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 class account extends Component {
-  constructor(props) {
-    super(props);
-  }
   navBarAccountClick = () => {
     console.log("here");
     // <Redirect to="/dashboard/link"/>

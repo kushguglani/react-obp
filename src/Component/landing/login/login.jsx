@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { loginUser, fetchTelcoAccounts } from '../../../service/httpService';
+import { loginUser } from '../../../service/httpService';
 import {
     isEmailValid,
     isPasswordValid
@@ -81,7 +81,7 @@ class login extends React.Component {
 
                 if (response.httpStatus === "400") {
                     // show error invalid credentials
-                    console.log(response.error);
+                    console.log(response);
                     this.setState({ errorMessage: response.error });
                     this.setState({ spinner: false })
                 }
@@ -94,19 +94,11 @@ class login extends React.Component {
                     this.props.saveLogInValueInStore(user);
                     this.props.isAnyAccountLinked(this.state.email,response.message).then(res=>{
                         console.log(res);
-                        this.props.getTelcoDashboardData(res[0].customerID,res[0].productId,res[0].productName);
+                        if(res)
+                            this.props.getTelcoDashboardData(res[0].customerID,res[0].productId,res[0].productName);
                     })
                     this.setState({ spinner: false });
-                        // .then(res => {
-                        //     if (res.data.error) {
-                        //         // means account not linked 
-                        //         this.props.saveSignInValueInStore(user);
-                        //     }
-                        //     else{
-                        //         // fetch products // show on left bar //show 3 graphs
-
-                        //     }
-                        // })
+                     
                 }
                 else {
                     console.log("pradeep server");

@@ -7,7 +7,7 @@ import LeftMenuBar from './leftMenuBar';
 // import Routing from './routing';
 import Main from './main/main'
 
-export default class Dashboard extends React.Component {
+export default class Banking extends React.Component {
     
     render() {
         return (

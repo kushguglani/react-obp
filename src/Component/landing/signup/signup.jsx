@@ -91,10 +91,6 @@ class signup extends React.Component {
                 password: this.state.password
             }
             signupUser(userDetails).then(response => {
-                const user = {
-                    emailId: this.state.email,
-                    userName: response.message
-                }
                 // render dashboard
                 this.setState({ spinner: false })
 

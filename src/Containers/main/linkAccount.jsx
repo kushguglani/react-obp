@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import classNames from 'classnames';
@@ -9,7 +8,6 @@ import {
     fetchTelcoAccount,
     getTelcoDashboardData
 } from '../../action/';
-import LeftMenuBar from '../leftMenuBar';
 
 class linkAccount extends Component {
     constructor(props) {
@@ -37,22 +35,19 @@ class linkAccount extends Component {
             else {
                 this.setState({ spinner: false, linkError: "" });
                 // this.props.fetchTelcoAccount(this.props.email,)
-                this.props.fetchTelcoAccount(this.props.email,this.props.userName).then(res=>{
-                    let fetchAccounts = this.props.fetchAccounts[0];
-                    console.log(fetchAccounts.customerID);
-                    this.props.getTelcoDashboardData(fetchAccounts.customerID,fetchAccounts.productId,fetchAccounts.productName);
+                this.props.fetchTelcoAccount(this.props.email, this.props.userName).then(res => {
+                    let fetchAccounts = this.props.telco.accountsFetch[0];
+                    console.log(fetchAccounts);
+                    console.log(fetchAccounts[0]);
+                    this.props.getTelcoDashboardData(fetchAccounts[0].customerID, fetchAccounts[0].productId, fetchAccounts[0].productName);
 
                 })
             }
         })
-        // this.props.fetchTelcoAccount(this.props.email,this.props.userName).then(res=>{
-        //     this.props.getTelcoDashboardData(this.props.fetchAccounts.customerID,this.props.fetchAccounts.productId,this.props.fetchAccounts.productName);
-
-        // })
-        //     .catch(err => {
-        //         console.log(err);
-        //     })
-
+            .catch(err => {
+                console.log(err);
+                this.setState({ spinner: false, linkError: "Network Error/ Try Again" });
+            })
     }
     render() {
 
@@ -64,29 +59,87 @@ class linkAccount extends Component {
             noMessage: !(this.state.linkError),
             showErrorMessage: this.state.linkError
         });
+        let productName;
+        let storeList = this.props.telco.accountsFetch[0];
+        if (storeList) {
+            productName = storeList[0].productName
+        }
+        else {
+            console.log(this.props.productName);
+            productName = this.props.productName
+        }   
+        let linkAccountFields;
+        if (this.props.activeDashboard === "dashboard") {
+            linkAccountFields =
+                <div className="inputFields">
+                    <input
+                        name='customerId'
+                        type="text"
+                        placeholder="Customer ID"
+                        value={this.state.customerId}
+                        onChange={this.customerIdChange}
+                    /> <br />
+                    <label className={errorClassName}>{this.state.linkError}</label>
+                    <button className="btn-full btn-green" onClick={this.addTelcoLinkAccount}> Submit </button>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button className="btn-full btn-blue" onClick={() => this.props.showDashboard(productName)}>
+                        Cancel
+                    </button>
+                    <div className={spinnerLoader}></div>
+                </div>
+        }
+
+        else if (this.props.activeDashboard === "banking") {
+            linkAccountFields =
+            <div className="inputFields">
+                <input
+                    name='customerId'
+                    type="text"
+                    placeholder="Account ID"
+                    value={this.state.customerId}
+                    onChange={this.customerIdChange}
+                /> <br />
+                 <input
+                    name='customerId'
+                    type="text"
+                    placeholder="Bank ID"
+                    value={this.state.customerId}
+                    onChange={this.customerIdChange}
+                /> <br />
+                <label className={errorClassName}>{this.state.linkError}</label>
+                <button className="btn-full btn-green" onClick={this.addTelcoLinkAccount}> Submit </button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button className="btn-full btn-blue" onClick={() => this.props.showDashboard(productName)}>
+                    Cancel
+                </button>
+                <div className={spinnerLoader}></div>
+            </div>
+        }
+        else{
+            linkAccountFields =
+            <div className="inputFields">
+                <input
+                    name='customerId'
+                    type="text"
+                    placeholder="Customer ID"
+                    value={this.state.customerId}
+                    onChange={this.customerIdChange}
+                /> <br />
+                <label className={errorClassName}>{this.state.linkError}</label>
+                <button className="btn-full btn-green" onClick={this.addTelcoLinkAccount}> Submit </button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button className="btn-full btn-blue" onClick={() => this.props.showDashboard(productName)}>
+                    Cancel
+                </button>
+                <div className={spinnerLoader}></div>
+            </div>
+        }
         return (
 
             <React.Fragment>
-                <div className="main">
+                <div className="main clearfix">
                     <p className="paragraphDash">Link Account</p>
                     <div className="box">
 
-                        <div className="inputFields">
-                            <input
-                                name='customerId'
-                                type="text"
-                                placeholder="Customer ID"
-                                value={this.state.customerId}
-                                onChange={this.customerIdChange}
-                            /><br />
-                            <label className={errorClassName}>{this.state.linkError}</label>
-                            <button className="btn-full btn-green" onClick={this.addTelcoLinkAccount}> Submit </button>
-                            &nbsp;&nbsp;&nbsp;
-                                <button className="btn-full btn-blue" onClick={()=>this.props.showDashboard(this.props.fetchAccounts[0].productName)}>
-                                    Cancel
-                            </button>
-                                <div className={spinnerLoader}></div>
-                        </div>
+                        {linkAccountFields}
+
                     </div>
                 </div>
             </React.Fragment>
@@ -98,7 +151,9 @@ function initMapStateToProps(state) {
     return {
         email: state.storedState.email,
         userName: state.storedState.userName,
-        fetchAccounts: state.storedState.accountsFetch[0]
+        productName: state.storedState.productName,
+        activeDashboard: state.storedState.activeDashboard,
+        telco:state.storedState.telco
     }
 }
 function initMapDispatchToProps(dispatch) {

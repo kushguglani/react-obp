@@ -2,14 +2,29 @@ const InitialState = {
     userName: "",
     email: "",
     signInRequired: true,
-    linkedTelcoAccount: false,
     accounts: [{ productId: "Link1", productName: "Link Accounts", productDetails: "For Linkingaccount" }],
-    accountsFetch: [],
     manageAccounts: [{ productId: "Manage1", productName: "View Accounts", productDetails: "For View Accounts" }],
-    linkingFail: undefined,
-    linkAccountPage: false,
-    telcoDashboard: undefined,
-    productName: "Link Accounts"
+    productName: "Link Accounts",
+    activeDashboard: "dashboard",
+    linkedAccount: false,
+    telco: {
+        linkedAccount: false,
+        accountsFetch: [],
+        linkingFail: undefined,
+        active: true
+    },
+    enrgy: {
+        linkedAccount: false,
+        accountsFetch: [],
+        linkingFail: undefined,
+        active: false
+    },
+    banking: {
+        linkedAccount: false,
+        accountsFetch: [],
+        linkingFail: undefined,
+        active: false
+    },
 }
 
 export default function storedState(state = InitialState, action) {
@@ -37,24 +52,42 @@ export default function storedState(state = InitialState, action) {
                 userName: action.payload.userName,
                 email: action.payload.emailId,
             }
-        case "LOG_OUT": 
+        case "LOG_OUT":
             return {
-                accounts: [{ productId: "Link1", productName: "Link Accounts", productDetails: "For Linkingaccount" }],
-                manageAccounts: [{ productId: "Manage1", productName: "View Accounts", productDetails: "For View Accounts" }],
-                linkingFail: undefined,
                 userName: "",
                 email: "",
                 signInRequired: true,
-                accountsFetch: [],
-                linkAccountPage: false,
-                telcoDashboard: undefined,
-                productName: "Link Accounts"
+                accounts: [{ productId: "Link1", productName: "Link Accounts", productDetails: "For Linkingaccount" }],
+                manageAccounts: [{ productId: "Manage1", productName: "View Accounts", productDetails: "For View Accounts" }],
+                productName: "Link Accounts",
+                activeDashboard: "dashboard",
+                telco: {
+                    linkedAccount: false,
+                    accountsFetch: [],
+                    linkingFail: undefined,
+                    active: true,
+                    dashboard:undefined
+                },
+                enrgy: {
+                    linkedAccount: false,
+                    accountsFetch: [],
+                    linkingFail: undefined,
+                    active: false,
+                    dashboard:undefined
+                },
+                banking: {
+                    linkedAccount: false,
+                    accountsFetch: [],
+                    linkingFail: undefined,
+                    active: false,
+                    dashboard:undefined
+                },
             }
         case "LINK_ACCOUNT":
             console.log(action.payload.value);
             return {
                 ...state,
-                accountsFetch: [...state.accountsFetch, action.payload],
+                accountsFetch: [...state.telco.accountsFetch, action.payload],
                 linkAccountPage: true,
             }
         case "LINK_ACCOUNT_FAIL":
@@ -64,10 +97,14 @@ export default function storedState(state = InitialState, action) {
                 linkingFail: action.payload
             }
         case "ADD_FETCH_ACCOUNT":
-            console.log(action.payload[0].productName);
+            console.log(state.telco.accountsFetch);
             return {
                 ...state,
-                accountsFetch: [action.payload],
+                productName: action.payload[0].productName,
+                telco: {
+                    ...state.telco,
+                    accountsFetch: [action.payload]
+                },
                 manageAccounts: [{ productId: "Manage1", productName: "View Accounts", productDetails: "For View Accounts" }, { productId: "Link1", productName: "Link Accounts", productDetails: "For Linkingaccount" }],
 
             }
@@ -77,30 +114,33 @@ export default function storedState(state = InitialState, action) {
                 ...state,
                 linkAccountPage: action.payload
             }
-            
+
         case "ACTIVE_LINK_ACCOUNT":
-        return {
-            ...state,
-            linkAccountPage: action.payload,
-            productName: "Link Accounts"
-        }
+            return {
+                ...state,
+                productName: "Link Accounts",
+                linkedAccount:true
+            }
         case "ACTIVE_LINK_ACCOUNT_DASHBOARD":
-        return {
-            ...state,
-            linkAccountPage: false,
-            productName: action.payload
-        }
+            return {
+                ...state,
+                linkedAccount: false,
+                productName: action.payload
+            }
         case "ADD_TELCO_DASHBOARD":
             return {
                 ...state,
-                telcoDashboard: action.payload,
-                linkAccountPage: false,
+                telco:{ ...state.telco,
+                    dashboard:action.payload},
+                linkedAccount: false,
                 signInRequired: false,
             }
         case "ADD_TELCO_PRODUCT_NAME":
             return {
                 ...state,
-                productName: action.payload
+                productName: action.payload,
+                // telco:{...state.telco,
+                //     productName:action.payload},
             }
         case "LINK_ACCOUNT_REQUEST":
             return state;
@@ -109,8 +149,15 @@ export default function storedState(state = InitialState, action) {
                 ...state,
                 linkAccountPage: false,
                 productName: action.payload[0].productName || "",
-                telcoDashboard: action.payload,
+                telco:{ ...state.telco,
+                    dashboard:action.payload},
 
+            }
+        case "CHANGE_ACTIVE_DASHBOARD":
+            console.log(state);
+            return {
+                ...state,
+                activeDashboard: action.payload
             }
         default:
             return state;

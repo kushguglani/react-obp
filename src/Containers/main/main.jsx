@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import LinkAccount from './linkAccount';
 import TelcoDashboard from './telcoDashboard';
 import DefaultMain from './defaultMain';
-import { changeLinkAccount,getTelcoDashboardData,changeLinkAccountDashboard } from '../../action/'
+import { changeLinkAccount, getTelcoDashboardData, changeLinkAccountDashboard } from '../../action/';
 
 class main extends Component {
 
@@ -15,26 +15,55 @@ class main extends Component {
     })
   }
   render() {
-    console.log(this.props.account);  
-    let productId = this.props.account[0].productId;
-    if (this.props.linkAccountPage) {
-      return <LinkAccount showDashboard={this.props.changeLinkAccountDashboard} />
+    console.log(this.props.telco);
+
+    if (this.props.activeDashboard ==="dashboard") {
+      if (this.props.linkedAccount) {
+        return <LinkAccount showDashboard={this.props.changeLinkAccountDashboard} />
+      }
+      else if (this.props.telco.accountsFetch[0]) {
+        return <TelcoDashboard showDefault={this.props.changeLinkAccount} />
+      } else {
+        console.log("here");
+        return <DefaultMain showLinkAccount={this.props.changeLinkAccount} account="linkAccountPage" />
+      }
     }
-    else if (this.props.accountsFetch[0]) {
-      return <TelcoDashboard showDefault={this.props.changeLinkAccount} />
-    } else {
-      return <DefaultMain showLinkAccount={this.props.changeLinkAccount} />
+
+
+    else if (this.props.activeDashboard === "banking") {
+      if (this.props.linkedAccount) {
+        return <LinkAccount showDashboard={this.props.changeLinkAccountDashboard} />
+      }
+      else if (this.props.bankingAccountsFetch) {
+        return <TelcoDashboard showDefault={this.props.changeLinkAccount} />
+      } else {
+        return <DefaultMain showLinkAccount={this.props.changeLinkAccount} account="linkBankAccountPage" />
+      }
     }
-    return null;
+    else {
+      // if (this.props.linkAccountPage) {
+      //   return <LinkAccount showDashboard={this.props.changeLinkAccountDashboard} />
+      // }
+      // else if (this.props.accountsFetch[0]) {
+      //   return <TelcoDashboard showDefault={this.props.changeLinkAccount} />
+      // } else {
+      //   return <DefaultMain showLinkAccount={this.props.changeLinkAccount} account="linkEnergyAccountPage" />
+      // }
+      return <p>/p></p>
+    }
   }
 }
 
+
 function initMapSateToProps(state) {
+  console.log(state);
   return {
     account: state.storedState.accounts,
-    accountsFetch: state.storedState.accountsFetch,
-    linkAccountPage: state.storedState.linkAccountPage,
-    productName:state.storedState.productName
+    telco: state.storedState.telco,
+    banking: state.storedState.banking,
+    linkedAccount: state.storedState.linkedAccount,
+    activeDashboard:state.storedState.activeDashboard
+
   }
 }
 

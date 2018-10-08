@@ -35,19 +35,7 @@ export function addLinkAccount(custId, email) {
             type: "LINK_ACCOUNT_REQUEST",
         }
     }
-    function linkSuccess() {
-        return {
-            type: "LINK_ACCOUNT",
-            payload: true
-        }
-    }
-    function error(value) {
-        console.log(value);
-        return {
-            type: "LINK_ACCOUNT_FAIL",
-            payload: value
-        }
-    }
+
     return function (dispatch) {
         dispatch(start());
         return linkAccount(custId, email);
@@ -55,17 +43,11 @@ export function addLinkAccount(custId, email) {
 }
 
 export function fetchTelcoAccount(emailId, userName) {
-    function start() {
-
-    }
     function success(value) {
         return {
             type: "ADD_FETCH_ACCOUNT",
             payload: value
         }
-    }
-    function fail() {
-
     }
     function noAccountLinked(value) {
         return {
@@ -121,9 +103,6 @@ export function getTelcoDashboardData(cid, pid,pName) {
             payload:value
         }
     }
-    function error() {
-
-    }
     return function (dispatch) {
         dispatch(start())
         return getTelcoDashboard(cid, pid).then(res=>{
@@ -134,14 +113,24 @@ export function getTelcoDashboardData(cid, pid,pName) {
 }
 
 export function changeLinkAccount(value){
+    console.log(value);
     return{
         type:"ACTIVE_LINK_ACCOUNT",
         payload:value
     }
 }
 export function changeLinkAccountDashboard(value){
+    console.log(value);
     return{
         type:"ACTIVE_LINK_ACCOUNT_DASHBOARD",
+        payload:value
+    }
+}
+
+export function changeActiveDashboard(value){
+    console.log(value);
+    return{
+        type:"CHANGE_ACTIVE_DASHBOARD",
         payload:value
     }
 }
